@@ -1,0 +1,2 @@
+register_test(TestMidiMessage TestMidiMessage.cpp)
+register_test(TestMidiParser TestMidiParser.cpp)
