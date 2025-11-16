@@ -5,6 +5,7 @@
 #include "NoteSequence.h"
 #include "Serialize.h"
 #include "Routing.h"
+#include "core/Debug.h"
 
 class NoteTrack {
 public:
@@ -284,6 +285,7 @@ public:
     AccumDir accumDir() const { return _accumDir; }
     void setAccumDir(AccumDir accumDir) {
         _accumDir = ModelUtils::clampedEnum(accumDir);
+        DBG("NoteTrack::setAccumDir(%d) called", int(_accumDir));
     }
 
     void editAccumDir(int value, bool shift) {
@@ -299,6 +301,7 @@ public:
     int accumValue() const { return _accumValue; }
     void setAccumValue(int accumValue) {
         _accumValue = clamp(accumValue, 0, 7);
+        DBG("NoteTrack::setAccumValue(%d) called", _accumValue);
     }
 
     void editAccumValue(int value, bool shift) {

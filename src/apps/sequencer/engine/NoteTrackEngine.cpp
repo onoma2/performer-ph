@@ -303,13 +303,19 @@ void NoteTrackEngine::triggerStep(uint32_t tick, uint32_t divisor) {
     if (currentIteration != _lastAccumIteration) {
         _lastAccumIteration = currentIteration;
 
+        int8_t accumValue = _noteTrack.accumValue();
+        NoteTrack::AccumDir accumDir = _noteTrack.accumDir();
+
+        DBG("Track %d: Iteration %d, AccumDir=%d, AccumValue=%d, AccumCurrent (before)=%d",
+            _track.trackIndex(), currentIteration, int(accumDir), accumValue, _accumCurrent);
+
         // Apply accumulator based on direction
-        switch (_noteTrack.accumDir()) {
+        switch (accumDir) {
         case NoteTrack::AccumDir::Up:
-            _accumCurrent += _noteTrack.accumValue();
+            _accumCurrent += accumValue;
             break;
         case NoteTrack::AccumDir::Down:
-            _accumCurrent -= _noteTrack.accumValue();
+            _accumCurrent -= accumValue;
             break;
         case NoteTrack::AccumDir::Freeze:
             // Keep current value
@@ -317,6 +323,8 @@ void NoteTrackEngine::triggerStep(uint32_t tick, uint32_t divisor) {
         default:
             break;
         }
+
+        DBG("Track %d: AccumCurrent (after)=%d", _track.trackIndex(), _accumCurrent);
     }
 
     // Add accumulator to transpose
