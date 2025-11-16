@@ -525,7 +525,208 @@ wrote 524288 bytes from file sequencer.bin in 12.345s (41.500 KiB/s)
    - Consider using a Linux VM (see `Vagrantfile`)
    - Or use ST-Link utility on another machine
 
-### Step 6.4: Hardware Debugging
+### Step 6.4: Creating UPDATE.DAT for SD Card Firmware Updates
+
+**This is the recommended method for updating your PEW|FORMER hardware!**
+
+SD card updates are much easier than JTAG flashing - you just copy a file to an SD card and the bootloader handles the rest. This is perfect for distributing firmware to users or for quick updates during development.
+
+#### What is UPDATE.DAT?
+
+UPDATE.DAT is a special firmware file that contains:
+- Your compiled sequencer binary (sequencer.bin)
+- MD5 checksum for verification
+- Version information embedded at offset 0x400
+
+The bootloader reads this file from the SD card, verifies its integrity, and flashes it to the device.
+
+#### Building UPDATE.DAT
+
+```bash
+# 1. Build the sequencer firmware
+cd build/stm32/release
+make -j sequencer
+
+# This automatically generates several files:
+# - sequencer.elf  (debug symbols)
+# - sequencer.bin  (raw binary)
+# - sequencer.hex  (Intel HEX format)
+# - UPDATE.DAT     (SD card update file) ← This is what you need!
+```
+
+**Where to find it:**
+```
+build/stm32/release/src/apps/sequencer/UPDATE.DAT
+```
+
+#### Preparing the SD Card
+
+1. **Format SD card:**
+   - File system: **FAT32** (required!)
+   - Any size SD card should work
+
+2. **Copy UPDATE.DAT to SD card root:**
+   ```bash
+   # On macOS
+   cp build/stm32/release/src/apps/sequencer/UPDATE.DAT /Volumes/YOUR_SD_CARD/
+
+   # Verify it's in the root directory
+   ls /Volumes/YOUR_SD_CARD/
+   # Should show: UPDATE.DAT
+   ```
+
+3. **Eject SD card safely:**
+   ```bash
+   diskutil eject /Volumes/YOUR_SD_CARD
+   ```
+
+#### Installing Firmware via SD Card
+
+There are **two ways** to enter the bootloader and perform the update:
+
+**Method 1: Press encoder during power-on (Recommended)**
+1. Power off your PEW|FORMER sequencer
+2. Insert SD card with UPDATE.DAT into the SD card slot
+3. **Hold down the encoder button**
+4. Power on the device (while still holding encoder)
+5. Release encoder when bootloader screen appears
+
+**Method 2: From the user interface**
+1. Insert SD card with UPDATE.DAT
+2. Navigate to: **System → Update**
+3. Follow on-screen instructions
+
+#### Update Process Flow
+
+Once in bootloader mode:
+
+1. **Detection:**
+   - Bootloader mounts SD card
+   - Looks for UPDATE.DAT in root directory
+   - Reads version information from the file
+
+2. **Display current vs. update version:**
+   ```
+   Current: v0.4.0
+   Update:  v0.5.0
+   ```
+
+3. **MD5 Verification:**
+   - Computes checksum of UPDATE.DAT
+   - Compares with embedded MD5
+   - Shows progress bar during verification
+
+4. **User Confirmation:**
+   ```
+   write update?
+   no / YES
+   ```
+   - Turn encoder to select YES or no
+   - Press encoder to confirm
+
+5. **Flashing:**
+   - Erases flash sectors
+   - Writes new firmware (shows progress)
+   - Verifies written data with MD5
+
+6. **Completion:**
+   - If successful: Device reboots into new firmware
+   - If failed: Shows error, stays in bootloader
+
+#### Important Notes
+
+**First-time setup:**
+- The bootloader itself must be flashed via JTAG first (one-time setup)
+- After bootloader is installed, all future updates can use SD card method
+
+**File requirements:**
+- Filename must be exactly `UPDATE.DAT` (case-sensitive)
+- Must be in root directory (not in a subfolder)
+- SD card must be FAT32 formatted
+
+**Version information:**
+The version displayed comes from `src/apps/sequencer/Config.h`:
+```cpp
+#define CONFIG_VERSION_NAME     "PEW|FORMER SEQUENCER"
+#define CONFIG_VERSION_MAJOR    0
+#define CONFIG_VERSION_MINOR    5
+#define CONFIG_VERSION_REVISION 0
+```
+
+To change the version for your build, edit these values before compiling.
+
+#### Troubleshooting SD Card Updates
+
+**Problem: Bootloader doesn't detect UPDATE.DAT**
+- Check filename is exactly `UPDATE.DAT` (not `update.dat` or `UPDATE.DAT.txt`)
+- Verify file is in root directory: `/UPDATE.DAT`
+- Ensure SD card is FAT32 formatted
+- Try a different SD card
+
+**Problem: "MD5 verification failed"**
+- File may be corrupted during copy
+- Rebuild UPDATE.DAT: `make -j sequencer`
+- Copy again to SD card
+- Eject SD card properly before removing
+
+**Problem: Update starts but fails during flash**
+- Device will stay in bootloader mode (safe state)
+- Try the update again
+- Check that UPDATE.DAT is valid
+- May need to JTAG flash if bootloader is corrupted
+
+**Problem: Bootloader won't enter with encoder press**
+- Make sure encoder is pressed BEFORE powering on
+- Keep holding until bootloader screen appears
+- Try Method 2 (from UI) instead
+- Check that bootloader is installed (may need JTAG flash first)
+
+#### Developer Workflow: Quick Updates
+
+For rapid development iteration:
+
+```bash
+# 1. Make code changes
+vim src/apps/sequencer/engine/Engine.cpp
+
+# 2. Build new firmware
+cd build/stm32/release
+make -j sequencer
+
+# 3. Copy to SD card (keep it mounted)
+cp src/apps/sequencer/UPDATE.DAT /Volumes/SD_CARD/
+
+# 4. Eject and install on hardware
+diskutil eject /Volumes/SD_CARD
+
+# 5. Power on device with encoder pressed
+# 6. Confirm update
+# 7. Test new firmware
+# 8. Repeat!
+```
+
+**Pro tip:** Keep an SD card dedicated for firmware updates so you don't need to reformat each time.
+
+#### Distributing Your Firmware
+
+To share your custom firmware build:
+
+1. Build release version:
+   ```bash
+   cd build/stm32/release
+   make -j sequencer
+   ```
+
+2. Copy UPDATE.DAT with a descriptive name:
+   ```bash
+   cp src/apps/sequencer/UPDATE.DAT ~/Downloads/performer-custom-v0.5.0-UPDATE.DAT
+   ```
+
+3. Share with instructions:
+   - Rename file to `UPDATE.DAT` before copying to SD card
+   - Follow update procedure above
+
+### Step 6.5: Hardware Debugging
 
 **Serial debugging (UART):**
 ```cpp
