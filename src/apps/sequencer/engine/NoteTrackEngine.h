@@ -66,6 +66,10 @@ private:
     int _currentStep;
     bool _prevCondition;
 
+    // Accumulator state
+    int _accumCurrent;
+    uint32_t _lastAccumIteration;
+
     int _monitorStepIndex = -1;
 
     RecordHistory _recordHistory;

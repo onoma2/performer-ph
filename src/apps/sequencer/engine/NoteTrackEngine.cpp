@@ -86,6 +86,8 @@ void NoteTrackEngine::reset() {
     _sequenceState.reset();
     _currentStep = -1;
     _prevCondition = false;
+    _accumCurrent = 0;
+    _lastAccumIteration = 0;
     _activity = false;
     _gateOutput = false;
     _cvOutput = 0.f;
@@ -102,6 +104,8 @@ void NoteTrackEngine::restart() {
     _freeRelativeTick = 0;
     _sequenceState.reset();
     _currentStep = -1;
+    _accumCurrent = 0;
+    _lastAccumIteration = 0;
 }
 
 TrackEngine::TickResult NoteTrackEngine::tick(uint32_t tick) {
@@ -293,6 +297,31 @@ void NoteTrackEngine::triggerStep(uint32_t tick, uint32_t divisor) {
     int octave = _noteTrack.octave();
     int transpose = _noteTrack.transpose();
     int rotate = _noteTrack.rotate();
+
+    // Update accumulator on iteration change
+    uint32_t currentIteration = _sequenceState.iteration();
+    if (currentIteration != _lastAccumIteration) {
+        _lastAccumIteration = currentIteration;
+
+        // Apply accumulator based on direction
+        switch (_noteTrack.accumDir()) {
+        case NoteTrack::AccumDir::Up:
+            _accumCurrent += _noteTrack.accumValue();
+            break;
+        case NoteTrack::AccumDir::Down:
+            _accumCurrent -= _noteTrack.accumValue();
+            break;
+        case NoteTrack::AccumDir::Freeze:
+            // Keep current value
+            break;
+        default:
+            break;
+        }
+    }
+
+    // Add accumulator to transpose
+    transpose += _accumCurrent;
+
     bool fillStep = fill() && (rng.nextRange(100) < uint32_t(fillAmount()));
     bool useFillGates = fillStep && _noteTrack.fillMode() == NoteTrack::FillMode::Gates;
     bool useFillSequence = fillStep && _noteTrack.fillMode() == NoteTrack::FillMode::NextPattern;
