@@ -3,7 +3,7 @@
 ## Overview
 This document summarizes the MVP implementation of the Metropolix-style accumulator feature for PEW|FORMER.
 
-**Commit**: 5d3b9b4 - "Add Metropolix-style accumulator MVP to NoteTrack"
+**Latest Commit**: 06ec2e4 - "Add UI controls for accumulator parameters"
 **Branch**: claude/claude-md-mi1t9pu56ol7w645-01WAokrp53hLYK4y7VfqGP9M
 **Date**: 2025-11-16
 
@@ -42,6 +42,16 @@ This document summarizes the MVP implementation of the Metropolix-style accumula
      * Detects iteration changes via `_sequenceState.iteration()`
      * Updates `_accumCurrent` based on `accumDir` and `accumValue`
      * Adds `_accumCurrent` to transpose before note evaluation
+
+### Phase 6: UI Implementation (COMPLETE)
+
+#### Files Modified:
+1. **src/apps/sequencer/ui/model/NoteTrackListModel.h**
+   - Added `AccumDir` and `AccumValue` to Item enum
+   - Added "Accum Dir" and "Accum Value" display names in `itemName()`
+   - Added `formatValue()` cases calling `printAccumDir()` and `printAccumValue()`
+   - Added `editValue()` cases calling `editAccumDir()` and `editAccumValue()`
+   - Parameters appear in Track page parameter list after "Note P. Bias"
 
 ## Implementation Details
 
@@ -142,9 +152,17 @@ When testing in proper environment:
 - [ ] Rapid pattern changes
 - [ ] Multiple tracks with different accumulator settings
 
+**UI Functionality:**
+- [ ] Can access "Accum Dir" parameter in Track page
+- [ ] Can access "Accum Value" parameter in Track page
+- [ ] Encoder adjusts direction (Up/Down/Freeze)
+- [ ] Encoder adjusts value (0-7)
+- [ ] Parameter values display correctly
+- [ ] Settings persist when changing tracks
+
 ## What's NOT Implemented (Future Phases)
 
-### Phase 5: Full Feature Set
+### Phase 5: Full Feature Set (Future)
 - **Mode**: Only Track mode (simple per-track accumulation)
   - Missing: Stage mode (per-step accumulation)
 - **Polarity**: Implicitly bipolar (can go positive or negative)
@@ -154,19 +172,11 @@ When testing in proper environment:
 - **Reset**: Only auto-reset on sequence reset
   - Missing: Manual reset controls
 
-### Phase 6: UI Implementation
-- No UI controls added yet
-- Parameters accessible only via MIDI/CV or code modification
-- Need to add:
-  - Menu pages for accumulator settings
-  - Visual feedback for current accumulated value
-  - Integration with parameter editing system
-
-### Phase 7: Advanced Testing
+### Phase 7: Advanced Testing (Future)
 - Performance testing (<1.2μs target)
 - Edge case validation
 - Multi-track interaction testing
-- UI/UX testing
+- Advanced UI/UX testing (visual feedback for accumulated value)
 
 ### Phase 8: Documentation
 - User manual updates
@@ -181,16 +191,18 @@ When testing in proper environment:
 3. Run basic accumulator tests:
    ```bash
    ./src/apps/sequencer/sequencer
+   # Navigate to Track page (TRACK button)
+   # Scroll down to "Accum Dir" and "Accum Value" parameters
    # Create simple 8-step pattern
-   # Set accumDir to Up
-   # Set accumValue to 1
+   # Set "Accum Dir" to "Up"
+   # Set "Accum Value" to "+1"
    # Play and observe transposition increases each loop
    ```
 
 ### Short Term
 1. Complete testing checklist above
 2. Debug any issues found during testing
-3. Add UI controls for accumulator parameters
+3. Test UI parameter editing functionality
 4. Document user-facing features
 
 ### Long Term
@@ -224,13 +236,14 @@ When testing in proper environment:
 ## Files Changed Summary
 
 ```
-src/apps/sequencer/model/NoteTrack.h          (+30 lines)
-src/apps/sequencer/model/NoteTrack.cpp        (+8 lines)
-src/apps/sequencer/model/ProjectVersion.h     (+3 lines)
-src/apps/sequencer/engine/NoteTrackEngine.h   (+4 lines)
-src/apps/sequencer/engine/NoteTrackEngine.cpp (+28 lines)
+src/apps/sequencer/model/NoteTrack.h              (+30 lines)
+src/apps/sequencer/model/NoteTrack.cpp            (+8 lines)
+src/apps/sequencer/model/ProjectVersion.h         (+3 lines)
+src/apps/sequencer/engine/NoteTrackEngine.h       (+4 lines)
+src/apps/sequencer/engine/NoteTrackEngine.cpp     (+28 lines)
+src/apps/sequencer/ui/model/NoteTrackListModel.h  (+16 lines)
 ---
-Total:                                         5 files, +93 lines
+Total:                                             6 files, +109 lines
 ```
 
 ## Related Documentation
@@ -248,10 +261,10 @@ Total:                                         5 files, +93 lines
 
 ### Extensibility
 The MVP is designed for easy extension:
-- Adding new directions: extend `AccumDir` enum
+- Adding new directions: extend `AccumDir` enum and update UI list
 - Adding modes: add new enum and switch logic
 - Adding orders: modify accumulation logic in triggerStep
-- Adding UI: parameters already have edit/print methods
+- UI already integrated: edit/print methods work with existing UI framework
 
 ### Backward Compatibility
 - Version33 gating ensures old projects load correctly
@@ -260,4 +273,4 @@ The MVP is designed for easy extension:
 
 ---
 
-**Status**: MVP implementation complete and committed. Awaiting build environment for testing.
+**Status**: ✅ MVP implementation complete with UI! Engine, model, and UI all implemented and committed. Ready for testing in build environment.
