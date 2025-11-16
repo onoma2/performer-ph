@@ -41,7 +41,7 @@ endif
 # Tools
 
 .PHONY: tools_install
-tools_install: arm_sdk_install openocd_install
+tools_install: arm_sdk_install
 
 .PHONY: tools_clean
 tools_clean: arm_sdk_clean openocd_clean
@@ -86,31 +86,31 @@ arm_sdk_clean:
 
 # OpenOCD
 
-.PHONY: openocd_install
+# .PHONY: openocd_install
 
-OPENOCD_URL := https://downloads.sourceforge.net/project/openocd/openocd/0.10.0/openocd-0.10.0.tar.bz2
-OPENOCD_FILE := $(notdir $(OPENOCD_URL))
-OPENOCD_DIR := $(TOOLS_DIR)/openocd
-OPENOCD_BUILD_DIR := $(TOOLS_DIR)/openocd-build
-OPENOCD_INSTALL_MARKER := $(OPENOCD_DIR)/bin/openocd
-OPENOCD_OPTIONS := --enable-maintainer-mode --prefix="$(OPENOCD_DIR)" --enable-buspirate --enable-stlink --enable-ftdi
+# OPENOCD_URL := https://downloads.sourceforge.net/project/openocd/openocd/0.10.0/openocd-0.10.0.tar.bz2
+# OPENOCD_FILE := $(notdir $(OPENOCD_URL))
+# OPENOCD_DIR := $(TOOLS_DIR)/openocd
+# OPENOCD_BUILD_DIR := $(TOOLS_DIR)/openocd-build
+# OPENOCD_INSTALL_MARKER := $(OPENOCD_DIR)/bin/openocd
+# OPENOCD_OPTIONS := --enable-maintainer-mode --prefix="$(OPENOCD_DIR)" --enable-buspirate --enable-stlink --enable-ftdi
 
-openocd_install: | $(TOOLS_DIR)
-openocd_install: openocd_download $(OPENOCD_INSTALL_MARKER)
+# openocd_install: | $(TOOLS_DIR)
+# openocd_install: openocd_download $(OPENOCD_INSTALL_MARKER)
 
-$(OPENOCD_INSTALL_MARKER):
-	$(V1) mkdir -p $(OPENOCD_BUILD_DIR)
-	$(V1) tar -C $(OPENOCD_BUILD_DIR) --strip-components=1 -xjf "$(DL_DIR)/$(OPENOCD_FILE)"
-	# build and install
-	$(V1) mkdir -p $(OPENOCD_DIR)
-	$(V1) ( \
-	  cd $(OPENOCD_BUILD_DIR) ; \
-	  ./bootstrap ; \
-	  ./configure  $(OPENOCD_OPTIONS) ; \
-	  $(MAKE) -j ; \
-	  $(MAKE) install ; \
-	)
-	$(V1) $(RM) -r $(OPENOCD_BUILD_DIR)
+# $(OPENOCD_INSTALL_MARKER):
+# 	$(V1) mkdir -p $(OPENOCD_BUILD_DIR)
+# 	$(V1) tar -C $(OPENOCD_BUILD_DIR) --strip-components=1 -xjf "$(DL_DIR)/$(OPENOCD_FILE)"
+# 	# build and install
+# 	$(V1) mkdir -p $(OPENOCD_DIR)
+# 	$(V1) ( \
+# 	  cd $(OPENOCD_BUILD_DIR) ; \
+# 	  ./bootstrap ; \
+# 	  ./configure  $(OPENOCD_OPTIONS) ; \
+# 	  $(MAKE) -j ; \
+# 	  $(MAKE) install ; \
+# 	)
+# 	$(V1) $(RM) -r $(OPENOCD_BUILD_DIR)
 
 
 .PHONY: openocd_download
@@ -128,7 +128,7 @@ openocd_clean:
 
 .PHONY: setup_stm32
 setup_stm32: arm_sdk_install
-	$(eval export PATH=$(ARM_SDK_DIR)/bin:$(OPENOCD_DIR)/bin:$(PATH))
+	$(eval export PATH=$(ARM_SDK_DIR)/bin:$(PATH))
 	(mkdir -p $(ROOT)/build/stm32/debug && cd $(ROOT)/build/stm32/debug && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=./cmake/arm.cmake -DCMAKE_BUILD_TYPE=Debug -DPLATFORM=stm32 ../../..)
 	(mkdir -p $(ROOT)/build/stm32/release && cd $(ROOT)/build/stm32/release && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=./cmake/arm.cmake -DCMAKE_BUILD_TYPE=Release -DPLATFORM=stm32 ../../..)
 	(ln -s $(ROOT)/build/stm32/release/compile_commands.json $(ROOT)/src/compile_commands.json)

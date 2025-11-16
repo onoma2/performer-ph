@@ -1,0 +1,1168 @@
+curl -L -k -o "/Users/foronoma/Work/Code/Eurorack/performer-ph/./downloads/openocd-0.10.0.tar.bz2" -z "/Users/foronoma/Work/Code/Eurorack/performer-ph/./downloads/openocd-0.10.0.tar.bz2" "https://downloads.sourceforge.net/project/openocd/openocd/0.10.0/openocd-0.10.0.tar.bz2"
+Warning: Failed to get filetime: No such file or directory
+Warning: Illegal date format for -z, --time-cond (and not a file name). 
+Warning: Disabling time condition. See curl_getdate(3) for valid date syntax.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   377  100   377    0     0    972      0 --:--:-- --:--:-- --:--:--   971100   377  100   377    0     0    972      0 --:--:-- --:--:-- --:--:--   971
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  6 4680k    6  287k    0     0  88910      0  0:00:53  0:00:03  0:00:50  233k 15 4680k   15  719k    0     0   166k      0  0:00:28  0:00:04  0:00:24  321k 24 4680k   24 1135k    0     0   213k      0  0:00:21  0:00:05  0:00:16  350k 33 4680k   33 1583k    0     0   250k      0  0:00:18  0:00:06  0:00:12  374k 43 4680k   43 2015k    0     0   275k      0  0:00:16  0:00:07  0:00:09  403k 52 4680k   52 2479k    0     0   298k      0  0:00:15  0:00:08  0:00:07  437k 62 4680k   62 2927k    0     0   314k      0  0:00:14  0:00:09  0:00:05  441k 72 4680k   72 3391k    0     0   326k      0  0:00:14  0:00:10  0:00:04  445k 83 4680k   83 3887k    0     0   343k      0  0:00:13  0:00:11  0:00:02  459k 92 4680k   92 4319k    0     0   347k      0  0:00:13  0:00:12  0:00:01  451k100 4680k  100 4680k    0     0   356k      0  0:00:13  0:00:13 --:--:--  458k
+mkdir -p /Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd-build
+tar -C /Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd-build --strip-components=1 -xjf "/Users/foronoma/Work/Code/Eurorack/performer-ph/./downloads/openocd-0.10.0.tar.bz2"
+# build and install
+mkdir -p /Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd
+( \
+	  cd /Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd-build ; \
+	  ./bootstrap ; \
+	  ./configure  --enable-maintainer-mode --prefix="/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd" --enable-buspirate --enable-stlink --enable-ftdi ; \
+	  /Applications/Xcode.app/Contents/Developer/usr/bin/make -j ; \
+	  /Applications/Xcode.app/Contents/Developer/usr/bin/make install ; \
+	)
+/bin/sh: ./bootstrap: No such file or directory
+checking for makeinfo... no
+configure: WARNING: Info documentation will not be built.
+checking for a BSD-compatible install... /opt/homebrew/opt/coreutils/libexec/gnubin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /opt/homebrew/opt/coreutils/libexec/gnubin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for gcc option to accept ISO C99... none needed
+checking for ranlib... ranlib
+checking for pkg-config... /opt/homebrew/bin/pkg-config
+checking pkg-config is at least version 0.23... yes
+checking build system type... arm-apple-darwin24.6.0
+checking host system type... arm-apple-darwin24.6.0
+checking how to print strings... printf
+checking for a sed that does not truncate output... /opt/homebrew/bin/gsed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+checking if the linker (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) is GNU ld... no
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 786432
+checking how to convert arm-apple-darwin24.6.0 file names to arm-apple-darwin24.6.0 format... func_convert_file_noop
+checking how to convert arm-apple-darwin24.6.0 file names to toolchain format... func_convert_file_noop
+checking for /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... no
+checking for strip... strip
+checking for ranlib... (cached) ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /opt/homebrew/opt/coreutils/libexec/gnubin/dd
+checking how to truncate binary pipes... /opt/homebrew/opt/coreutils/libexec/gnubin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for dsymutil... dsymutil
+checking for nmedit... nmedit
+checking for lipo... lipo
+checking for otool... otool
+checking for otool64... no
+checking for -single_module linker flag... ld: warning: -single_module is obsolete
+no
+checking for -exported_symbols_list linker flag... yes
+checking for -force_load linker flag... yes
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... yes
+checking for gcc option to produce PIC... -fno-common -DPIC
+checking if gcc PIC flag -fno-common -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... darwin24.6.0 dyld
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... no
+checking whether to build static libraries... yes
+checking for an ANSI C-conforming const... yes
+checking for unsigned long long int... yes
+checking for long long int... yes
+checking for library containing ioperm... no
+checking for library containing dlopen... none required
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking elf.h usability... no
+checking elf.h presence... no
+checking for elf.h... no
+checking dirent.h usability... yes
+checking dirent.h presence... yes
+checking for dirent.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking malloc.h usability... no
+checking malloc.h presence... no
+checking for malloc.h... no
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking poll.h usability... yes
+checking poll.h presence... yes
+checking for poll.h... yes
+checking pthread.h usability... yes
+checking pthread.h presence... yes
+checking for pthread.h... yes
+checking for strings.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/select.h usability... yes
+checking sys/select.h presence... yes
+checking for sys/select.h... yes
+checking for sys/stat.h... (cached) yes
+checking sys/sysctl.h usability... yes
+checking sys/sysctl.h presence... yes
+checking for sys/sysctl.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for arpa/inet.h... yes
+checking for ifaddrs.h... yes
+checking for netinet/in.h... yes
+checking for netinet/tcp.h... yes
+checking for net/if.h... yes
+checking whether to enable assertions... yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking whether byte ordering is bigendian... no
+checking for strndup... yes
+checking for strnlen... yes
+checking for gettimeofday... yes
+checking for usleep... yes
+checking for vasprintf... yes
+checking for realpath... yes
+checking whether to build a release... yes
+checking whether to build Doxygen as HTML... yes
+checking whether to build Doxygen as PDF... no
+checking whether to enable verbose JTAG I/O messages... no
+checking whether to enable verbose USB I/O messages... no
+checking whether to enable verbose USB communication messages... no
+checking whether to enable malloc free space logging... no
+checking whether to enable ZY1000 minidriver... no
+checking whether to enable dummy minidriver... no
+checking whether standard drivers can be built... yes
+checking for LIBUSB1... yes
+configure: libusb-1.0 header bug workaround: LIBUSB1_CFLAGS changed to "-isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0"
+checking for LIBUSB0... no
+checking for HIDAPI... no
+checking for HIDAPI... no
+checking for HIDAPI... no
+checking for LIBFTDI... no
+checking for LIBFTDI... no
+checking for LIBJAYLINK... no
+checking for environ in unistd.h and stdlib.h... no
+checking for extern environ... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+=== configuring in jimtcl (/Users/foronoma/Work/Code/Eurorack/performer-ph/tools/openocd-build/jimtcl)
+configure: running /bin/sh ./configure.gnu --disable-option-checking '--prefix=/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd'  '--enable-maintainer-mode' '--enable-buspirate' '--enable-stlink' '--enable-ftdi' --cache-file=/dev/null --srcdir=.
+./configure.gnu: line 1: -e: command not found
+Host System...arm-apple-darwin24.6.0
+Build System...arm-apple-darwin24.6.0
+C compiler... cc -g -O2
+C++ compiler... c++ -g -O2
+Build C compiler...cc
+Checking for stdlib.h...ok
+Checking for long long...ok
+Checking for sys/time.h...ok
+Checking for sys/socket.h...ok
+Checking for netinet/in.h...ok
+Checking for arpa/inet.h...ok
+Checking for netdb.h...ok
+Checking for sys/un.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for dirent.h...ok
+Checking for crt_externs.h...ok
+Checking libs for inet_ntop...none needed
+Checking libs for socket...none needed
+Checking for ualarm...ok
+Checking for lstat...ok
+Checking for fork...ok
+Checking for vfork...ok
+Checking for system...ok
+Checking for select...ok
+Checking for execvpe...not found
+Checking for backtrace...ok
+Checking for geteuid...ok
+Checking for mkstemp...ok
+Checking for realpath...ok
+Checking for strptime...ok
+Checking for isatty...ok
+Checking for regcomp...ok
+Checking for waitpid...ok
+Checking for sigaction...ok
+Checking for sys_signame...ok
+Checking for sys_siglist...ok
+Checking for isascii...ok
+Checking for syslog...ok
+Checking for opendir...ok
+Checking for readlink...ok
+Checking for sleep...ok
+Checking for usleep...ok
+Checking for pipe...ok
+Checking for getaddrinfo...ok
+Checking for utimes...ok
+Checking for shutdown...ok
+Checking for socketpair...ok
+Checking for isinf...ok
+Checking for isnan...ok
+Checking for link...ok
+Checking for symlink...ok
+Checking for fsync...ok
+Checking for dup...ok
+Checking for sysinfo...not found
+Checking for struct flock...ok
+Checking for sys/types.h...(cached) ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+Checking for fseeko...ok
+Checking for ftello...ok
+Checking for _NSGetEnviron...ok
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for mkdir with one arg...no
+Checking for termios.h...ok
+Enabling line editing
+Enabling references
+Building static library
+Extension eventloop...enabled
+Extension array...enabled
+Extension clock...enabled
+Extension regexp...enabled
+Extension stdlib...enabled
+Extension tclcompat...enabled
+Using built-in regexp
+Jim static extensions: array clock eventloop regexp stdlib tclcompat
+jim-config.h is unchanged
+jimautoconf.h is unchanged
+Created Makefile from Makefile.in
+Created build-jim-ext from build-jim-ext.in
+=== configuring in src/jtag/drivers/libjaylink (/Users/foronoma/Work/Code/Eurorack/performer-ph/tools/openocd-build/src/jtag/drivers/libjaylink)
+configure: running /bin/sh ./configure.gnu --disable-option-checking '--prefix=/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd'  '--enable-maintainer-mode' '--enable-buspirate' '--enable-stlink' '--enable-ftdi' --cache-file=/dev/null --srcdir=.
+./configure.gnu: line 1: -e: command not found
+checking build system type... arm-apple-darwin24.6.0
+checking host system type... arm-apple-darwin24.6.0
+checking for a BSD-compatible install... /opt/homebrew/opt/coreutils/libexec/gnubin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /opt/homebrew/opt/coreutils/libexec/gnubin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking how to print strings... printf
+checking for a sed that does not truncate output... /opt/homebrew/bin/gsed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+checking if the linker (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) is GNU ld... no
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 786432
+checking how to convert arm-apple-darwin24.6.0 file names to arm-apple-darwin24.6.0 format... func_convert_file_noop
+checking how to convert arm-apple-darwin24.6.0 file names to toolchain format... func_convert_file_noop
+checking for /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... no
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /opt/homebrew/opt/coreutils/libexec/gnubin/dd
+checking how to truncate binary pipes... /opt/homebrew/opt/coreutils/libexec/gnubin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for dsymutil... dsymutil
+checking for nmedit... nmedit
+checking for lipo... lipo
+checking for otool... otool
+checking for otool64... no
+checking for -single_module linker flag... ld: warning: -single_module is obsolete
+no
+checking for -exported_symbols_list linker flag... yes
+checking for -force_load linker flag... yes
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... yes
+checking for gcc option to produce PIC... -fno-common -DPIC
+checking if gcc PIC flag -fno-common -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... darwin24.6.0 dyld
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for pkg-config... /opt/homebrew/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for libusb... yes
+checking whether byte ordering is bigendian... no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libjaylink/Makefile
+config.status: creating libjaylink/version.h
+config.status: creating libjaylink.pc
+config.status: creating Doxyfile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+libjaylink configuration summary:
+ - Package version ................ 0.1.0
+ - Library version ................ 0:0:0
+ - Installation prefix ............ /Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd
+ - Building on .................... arm-apple-darwin24.6.0
+ - Building for ................... arm-apple-darwin24.6.0
+
+
+
+OpenOCD configuration summary
+--------------------------------------------------
+MPSSE mode of FTDI based devices        yes
+ST-Link JTAG Programmer                 yes
+TI ICDI JTAG Programmer                 yes (auto)
+Keil ULINK JTAG Programmer              yes (auto)
+Altera USB-Blaster II Compatible        yes (auto)
+Versaloon-Link JTAG Programmer          yes (auto)
+OSBDM (JTAG only) Programmer            yes (auto)
+eStick/opendous JTAG Programmer         yes (auto)
+Andes JTAG Programmer                   yes (auto)
+USBProg JTAG Programmer                 no
+Raisonance RLink JTAG Programmer        no
+Olimex ARM-JTAG-EW Programmer           no
+CMSIS-DAP Compliant Debugger            no
+Altera USB-Blaster Compatible           no
+ASIX Presto Adapter                     no
+OpenJTAG Adapter                        no
+SEGGER J-Link Programmer                yes (auto)
+
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make  all-recursive
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+Making all in jimtcl
+/opt/homebrew/opt/tcl-tk@8/bin/tclsh ./make-load-static-exts.tcl array clock eventloop regexp stdlib tclcompat >_load-static-exts.c || ( rm _load-static-exts.c; exit 1)
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-subcmd.o jim-subcmd.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-interactive.o jim-interactive.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-format.o jim-format.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim.o jim.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o utf8.o utf8.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jimregexp.o jimregexp.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o linenoise.o linenoise.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-array.o jim-array.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-clock.o jim-clock.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-eventloop.o jim-eventloop.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o jim-regexp.o jim-regexp.c
+/opt/homebrew/opt/tcl-tk@8/bin/tclsh ./make-c-ext.tcl stdlib.tcl >_stdlib.c
+/opt/homebrew/opt/tcl-tk@8/bin/tclsh ./make-c-ext.tcl tclcompat.tcl >_tclcompat.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -c -o _load-static-exts.o _load-static-exts.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables  -c -o tclcompat.o _tclcompat.c
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables  -c -o stdlib.o _stdlib.c
+ar cr libjim.a _load-static-exts.o jim-subcmd.o jim-interactive.o jim-format.o jim.o utf8.o jimregexp.o linenoise.o jim-array.o jim-clock.o jim-eventloop.o jim-regexp.o stdlib.o tclcompat.o
+ranlib libjim.a
+cc -Wall  -I. -g -O2 -fno-unwind-tables -fno-asynchronous-unwind-tables    -o jimsh jimsh.o initjimsh.o libjim.a  
+Making all in src/jtag/drivers/libjaylink
+/Applications/Xcode.app/Contents/Developer/usr/bin/make  all-recursive
+Making all in libjaylink
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-buffer.lo -MD -MP -MF .deps/libjaylink_la-buffer.Tpo -c -o libjaylink_la-buffer.lo `test -f 'buffer.c' || echo './'`buffer.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-core.lo -MD -MP -MF .deps/libjaylink_la-core.Tpo -c -o libjaylink_la-core.lo `test -f 'core.c' || echo './'`core.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-device.lo -MD -MP -MF .deps/libjaylink_la-device.Tpo -c -o libjaylink_la-device.lo `test -f 'device.c' || echo './'`device.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-discovery.lo -MD -MP -MF .deps/libjaylink_la-discovery.Tpo -c -o libjaylink_la-discovery.lo `test -f 'discovery.c' || echo './'`discovery.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-emucom.lo -MD -MP -MF .deps/libjaylink_la-emucom.Tpo -c -o libjaylink_la-emucom.lo `test -f 'emucom.c' || echo './'`emucom.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-error.lo -MD -MP -MF .deps/libjaylink_la-error.Tpo -c -o libjaylink_la-error.lo `test -f 'error.c' || echo './'`error.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-fileio.lo -MD -MP -MF .deps/libjaylink_la-fileio.Tpo -c -o libjaylink_la-fileio.lo `test -f 'fileio.c' || echo './'`fileio.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-jtag.lo -MD -MP -MF .deps/libjaylink_la-jtag.Tpo -c -o libjaylink_la-jtag.lo `test -f 'jtag.c' || echo './'`jtag.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-list.lo -MD -MP -MF .deps/libjaylink_la-list.Tpo -c -o libjaylink_la-list.lo `test -f 'list.c' || echo './'`list.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-log.lo -MD -MP -MF .deps/libjaylink_la-log.Tpo -c -o libjaylink_la-log.lo `test -f 'log.c' || echo './'`log.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-strutil.lo -MD -MP -MF .deps/libjaylink_la-strutil.Tpo -c -o libjaylink_la-strutil.lo `test -f 'strutil.c' || echo './'`strutil.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-swd.lo -MD -MP -MF .deps/libjaylink_la-swd.Tpo -c -o libjaylink_la-swd.lo `test -f 'swd.c' || echo './'`swd.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-swo.lo -MD -MP -MF .deps/libjaylink_la-swo.Tpo -c -o libjaylink_la-swo.lo `test -f 'swo.c' || echo './'`swo.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-target.lo -MD -MP -MF .deps/libjaylink_la-target.Tpo -c -o libjaylink_la-target.lo `test -f 'target.c' || echo './'`target.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-transport.lo -MD -MP -MF .deps/libjaylink_la-transport.Tpo -c -o libjaylink_la-transport.lo `test -f 'transport.c' || echo './'`transport.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-util.lo -MD -MP -MF .deps/libjaylink_la-util.Tpo -c -o libjaylink_la-util.lo `test -f 'util.c' || echo './'`util.c
+/bin/sh ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -I. -I..    -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2 -MT libjaylink_la-version.lo -MD -MP -MF .deps/libjaylink_la-version.Tpo -c -o libjaylink_la-version.lo `test -f 'version.c' || echo './'`version.c
+mv -f .deps/libjaylink_la-error.Tpo .deps/libjaylink_la-error.Plo
+mv -f .deps/libjaylink_la-version.Tpo .deps/libjaylink_la-version.Plo
+mv -f .deps/libjaylink_la-util.Tpo .deps/libjaylink_la-util.Plo
+mv -f .deps/libjaylink_la-buffer.Tpo .deps/libjaylink_la-buffer.Plo
+mv -f .deps/libjaylink_la-swd.Tpo .deps/libjaylink_la-swd.Plo
+mv -f .deps/libjaylink_la-emucom.Tpo .deps/libjaylink_la-emucom.Plo
+mv -f .deps/libjaylink_la-jtag.Tpo .deps/libjaylink_la-jtag.Plo
+mv -f .deps/libjaylink_la-target.Tpo .deps/libjaylink_la-target.Plo
+mv -f .deps/libjaylink_la-swo.Tpo .deps/libjaylink_la-swo.Plo
+mv -f .deps/libjaylink_la-strutil.Tpo .deps/libjaylink_la-strutil.Plo
+mv -f .deps/libjaylink_la-fileio.Tpo .deps/libjaylink_la-fileio.Plo
+mv -f .deps/libjaylink_la-list.Tpo .deps/libjaylink_la-list.Plo
+mv -f .deps/libjaylink_la-log.Tpo .deps/libjaylink_la-log.Plo
+mv -f .deps/libjaylink_la-core.Tpo .deps/libjaylink_la-core.Plo
+mv -f .deps/libjaylink_la-discovery.Tpo .deps/libjaylink_la-discovery.Plo
+mv -f .deps/libjaylink_la-transport.Tpo .deps/libjaylink_la-transport.Plo
+mv -f .deps/libjaylink_la-device.Tpo .deps/libjaylink_la-device.Plo
+/bin/sh ../libtool  --tag=CC --silent  --mode=link gcc -Wall -Wextra -Werror -fvisibility=hidden -I/opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -g -O2  -no-undefined  -o libjaylink.la  libjaylink_la-buffer.lo libjaylink_la-core.lo libjaylink_la-device.lo libjaylink_la-discovery.lo libjaylink_la-emucom.lo libjaylink_la-error.lo libjaylink_la-fileio.lo libjaylink_la-jtag.lo libjaylink_la-list.lo libjaylink_la-log.lo libjaylink_la-strutil.lo libjaylink_la-swd.lo libjaylink_la-swo.lo libjaylink_la-target.lo libjaylink_la-transport.lo libjaylink_la-util.lo libjaylink_la-version.lo  -L/opt/homebrew/Cellar/libusb/1.0.29/lib -lusb-1.0 
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+depbase=`echo src/svf/svf.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/svf/svf.lo -MD -MP -MF $depbase.Tpo -c -o src/svf/svf.lo src/svf/svf.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/jtag/core.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/core.lo -MD -MP -MF $depbase.Tpo -c -o src/jtag/core.lo src/jtag/core.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/jtag/interface.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/interface.lo -MD -MP -MF $depbase.Tpo -c -o src/jtag/interface.lo src/jtag/interface.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./src/jtag/drivers  -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0   -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/aice/src_jtag_aice_libocdaice_la-aice_usb.lo -MD -MP -MF src/jtag/aice/.deps/src_jtag_aice_libocdaice_la-aice_usb.Tpo -c -o src/jtag/aice/src_jtag_aice_libocdaice_la-aice_usb.lo `test -f 'src/jtag/aice/aice_usb.c' || echo './'`src/jtag/aice/aice_usb.c
+depbase=`echo src/flash/nor/dsp5680xx_flash.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nor/dsp5680xx_flash.lo -MD -MP -MF $depbase.Tpo -c -o src/flash/nor/dsp5680xx_flash.lo src/flash/nor/dsp5680xx_flash.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/flash/nor/stmsmi.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nor/stmsmi.lo -MD -MP -MF $depbase.Tpo -c -o src/flash/nor/stmsmi.lo src/flash/nor/stmsmi.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/flash/nand/davinci.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/davinci.lo -MD -MP -MF $depbase.Tpo -c -o src/flash/nand/davinci.lo src/flash/nand/davinci.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/flash/nand/lpc3180.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/lpc3180.lo -MD -MP -MF $depbase.Tpo -c -o src/flash/nand/lpc3180.lo src/flash/nand/lpc3180.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/flash/nand/lpc32xx.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/lpc32xx.lo -MD -MP -MF $depbase.Tpo -c -o src/flash/nand/lpc32xx.lo src/flash/nand/lpc32xx.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/breakpoints.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/breakpoints.lo -MD -MP -MF $depbase.Tpo -c -o src/target/breakpoints.lo src/target/breakpoints.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/target.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/target.lo -MD -MP -MF $depbase.Tpo -c -o src/target/target.lo src/target/target.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/smp.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/smp.lo -MD -MP -MF $depbase.Tpo -c -o src/target/smp.lo src/target/smp.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/arm7_9_common.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/arm7_9_common.lo -MD -MP -MF $depbase.Tpo -c -o src/target/arm7_9_common.lo src/target/arm7_9_common.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/nds32_cmd.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/nds32_cmd.lo -MD -MP -MF $depbase.Tpo -c -o src/target/nds32_cmd.lo src/target/nds32_cmd.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/x86_32_common.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/x86_32_common.lo -MD -MP -MF $depbase.Tpo -c -o src/target/x86_32_common.lo src/target/x86_32_common.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+depbase=`echo src/target/dsp563xx.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/dsp563xx.lo -MD -MP -MF $depbase.Tpo -c -o src/target/dsp563xx.lo src/target/dsp563xx.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2   -o src/target/openrisc/libopenrisc.la  src/target/openrisc/or1k.lo src/target/openrisc/or1k_du_adv.lo src/target/openrisc/or1k_tap_mohor.lo src/target/openrisc/or1k_tap_vjtag.lo src/target/openrisc/or1k_tap_xilinx_bscan.lo src/target/openrisc/jsp_server.lo  
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror  -g -O2   -o src/server/libserver.la  src/server/src_server_libserver_la-server.lo src/server/src_server_libserver_la-telnet_server.lo src/server/src_server_libserver_la-gdb_server.lo src/server/src_server_libserver_la-server_stubs.lo src/server/src_server_libserver_la-tcl_server.lo  
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror  -g -O2   -o src/rtos/librtos.la  src/rtos/src_rtos_librtos_la-rtos.lo src/rtos/src_rtos_librtos_la-rtos_standard_stackings.lo src/rtos/src_rtos_librtos_la-rtos_ecos_stackings.lo src/rtos/src_rtos_librtos_la-rtos_chibios_stackings.lo src/rtos/src_rtos_librtos_la-rtos_embkernel_stackings.lo src/rtos/src_rtos_librtos_la-rtos_mqx_stackings.lo src/rtos/src_rtos_librtos_la-rtos_ucos_iii_stackings.lo src/rtos/src_rtos_librtos_la-FreeRTOS.lo src/rtos/src_rtos_librtos_la-ThreadX.lo src/rtos/src_rtos_librtos_la-eCos.lo src/rtos/src_rtos_librtos_la-linux.lo src/rtos/src_rtos_librtos_la-ChibiOS.lo src/rtos/src_rtos_librtos_la-embKernel.lo src/rtos/src_rtos_librtos_la-mqx.lo src/rtos/src_rtos_librtos_la-uCOS-III.lo  
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror  -g -O2 -MT src/helper/src_helper_libhelper_la-log.lo -MD -MP -MF src/helper/.deps/src_helper_libhelper_la-log.Tpo -c -o src/helper/src_helper_libhelper_la-log.lo `test -f 'src/helper/log.c' || echo './'`src/helper/log.c
+libtool: link: ar cru src/rtos/.libs/librtos.a  src/rtos/src_rtos_librtos_la-rtos.o src/rtos/src_rtos_librtos_la-rtos_standard_stackings.o src/rtos/src_rtos_librtos_la-rtos_ecos_stackings.o src/rtos/src_rtos_librtos_la-rtos_chibios_stackings.o src/rtos/src_rtos_librtos_la-rtos_embkernel_stackings.o src/rtos/src_rtos_librtos_la-rtos_mqx_stackings.o src/rtos/src_rtos_librtos_la-rtos_ucos_iii_stackings.o src/rtos/src_rtos_librtos_la-FreeRTOS.o src/rtos/src_rtos_librtos_la-ThreadX.o src/rtos/src_rtos_librtos_la-eCos.o src/rtos/src_rtos_librtos_la-linux.o src/rtos/src_rtos_librtos_la-ChibiOS.o src/rtos/src_rtos_librtos_la-embKernel.o src/rtos/src_rtos_librtos_la-mqx.o src/rtos/src_rtos_librtos_la-uCOS-III.o
+libtool: link: ar cru src/server/.libs/libserver.a  src/server/src_server_libserver_la-server.o src/server/src_server_libserver_la-telnet_server.o src/server/src_server_libserver_la-gdb_server.o src/server/src_server_libserver_la-server_stubs.o src/server/src_server_libserver_la-tcl_server.o
+libtool: link: ar cru src/target/openrisc/.libs/libopenrisc.a  src/target/openrisc/or1k.o src/target/openrisc/or1k_du_adv.o src/target/openrisc/or1k_tap_mohor.o src/target/openrisc/or1k_tap_vjtag.o src/target/openrisc/or1k_tap_xilinx_bscan.o src/target/openrisc/jsp_server.o
+libtool: link: ranlib src/server/.libs/libserver.a
+libtool: link: ranlib src/rtos/.libs/librtos.a
+libtool: link: ranlib src/target/openrisc/.libs/libopenrisc.a
+libtool: link: ( cd "src/server/.libs" && rm -f "libserver.la" && ln -s "../libserver.la" "libserver.la" )
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2   -o src/pld/libpld.la  src/pld/pld.lo src/pld/xilinx_bit.lo src/pld/virtex2.lo  
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2   -o src/jtag/hla/libocdhla.la  src/jtag/hla/hla_transport.lo src/jtag/hla/hla_tcl.lo src/jtag/hla/hla_interface.lo src/jtag/hla/hla_layout.lo  
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0     -I./src/jtag/drivers/libjaylink/libjaylink -I./src/jtag/drivers/libjaylink  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/drivers/src_jtag_drivers_libocdjtagdrivers_la-jlink.lo -MD -MP -MF src/jtag/drivers/.deps/src_jtag_drivers_libocdjtagdrivers_la-jlink.Tpo -c -o src/jtag/drivers/src_jtag_drivers_libocdjtagdrivers_la-jlink.lo `test -f 'src/jtag/drivers/jlink.c' || echo './'`src/jtag/drivers/jlink.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/core.lo -MD -MP -MF src/jtag/.deps/core.Tpo -c src/jtag/core.c -o src/jtag/core.o
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2   -o src/jtag/drivers/usb_blaster/libocdusbblaster.la  src/jtag/drivers/usb_blaster/src_jtag_drivers_usb_blaster_libocdusbblaster_la-usb_blaster.lo  src/jtag/drivers/usb_blaster/src_jtag_drivers_usb_blaster_libocdusbblaster_la-ublast2_access_libusb.lo  
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2   -o src/transport/libtransport.la  src/transport/transport.lo  
+libtool: link: ( cd "src/rtos/.libs" && rm -f "librtos.la" && ln -s "../librtos.la" "librtos.la" )
+libtool: link: ( cd "src/target/openrisc/.libs" && rm -f "libopenrisc.la" && ln -s "../libopenrisc.la" "libopenrisc.la" )
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/x86_32_common.lo -MD -MP -MF src/target/.deps/x86_32_common.Tpo -c src/target/x86_32_common.c -o src/target/x86_32_common.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/target.lo -MD -MP -MF src/target/.deps/target.Tpo -c src/target/target.c -o src/target/target.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/lpc3180.lo -MD -MP -MF src/flash/nand/.deps/lpc3180.Tpo -c src/flash/nand/lpc3180.c -o src/flash/nand/lpc3180.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/arm7_9_common.lo -MD -MP -MF src/target/.deps/arm7_9_common.Tpo -c src/target/arm7_9_common.c -o src/target/arm7_9_common.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/interface.lo -MD -MP -MF src/jtag/.deps/interface.Tpo -c src/jtag/interface.c -o src/jtag/interface.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nor/stmsmi.lo -MD -MP -MF src/flash/nor/.deps/stmsmi.Tpo -c src/flash/nor/stmsmi.c -o src/flash/nor/stmsmi.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/breakpoints.lo -MD -MP -MF src/target/.deps/breakpoints.Tpo -c src/target/breakpoints.c -o src/target/breakpoints.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nor/dsp5680xx_flash.lo -MD -MP -MF src/flash/nor/.deps/dsp5680xx_flash.Tpo -c src/flash/nor/dsp5680xx_flash.c -o src/flash/nor/dsp5680xx_flash.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/dsp563xx.lo -MD -MP -MF src/target/.deps/dsp563xx.Tpo -c src/target/dsp563xx.c -o src/target/dsp563xx.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/nds32_cmd.lo -MD -MP -MF src/target/.deps/nds32_cmd.Tpo -c src/target/nds32_cmd.c -o src/target/nds32_cmd.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/helper/src_helper_libhelper_la-log.lo -MD -MP -MF src/helper/.deps/src_helper_libhelper_la-log.Tpo -c src/helper/log.c -o src/helper/src_helper_libhelper_la-log.o
+src/flash/nand/lpc3180.c:240:65: error: operator '?:' has lower precedence than '|'; '|' will be evaluated first [-Werror,-Wbitwise-conditional-parentheses]
+  240 |                 target_write_u32(target, 0x20020014, 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                      ~~~~~~~~~~~~~~~~~~~~~~~~ ^
+src/flash/nand/lpc3180.c:240:libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/svf/svf.lo -MD -MP -MF src/svf/.deps/svf.Tpo -c src/svf/svf.c -o src/svf/svf.o
+src/jtag/interface.c:48:26: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+65:   48 | tap_state_t tap_get_state() note: place parentheses around the '|' expression to silence this warning
+  240 |                 tarsrc/target/breakpoints.c:53:6: error: variable 'n' set but not used [-Werror,-Wunused-but-set-variable]
+   53 |         int n;
+      |             ^
+
+      |                          ^
+      |                           void
+get_write_u32(target, 0x20020014, 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                                               ^
+      |                                                      (                       )
+src/jtag/core.c:1678:22: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+ 1678 | bool jtag_will_verify()
+      |                      ^
+      |                       void
+src/jtag/core.c:1688:33: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+ 1688 | bool jtag_will_verify_capture_ir()
+      |                                 ^
+      |                                  void
+2 errors generated.
+src/jtag/interface.csrc/flash/nand/lpc3180.c:240:65: note: place parentheses around the '?:' expression to evaluate it first
+  240 |                 target_write_u32(target, 0x20020014, 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                                               ^      
+      |                                                             (                        )
+:67:30: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+   67 | tap_state_t tap_get_end_state()
+      |                              ^
+      |                               void
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src/jtag/drivers -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/aice/src_jtag_aice_libocdaice_la-aice_usb.lo -MD -MP -MF src/jtag/aice/.deps/src_jtag_aice_libocdaice_la-aice_usb.Tpo -c src/jtag/aice/aice_usb.c -o src/jtag/aice/src_jtag_aice_libocdaice_la-aice_usb.o
+src/flash/nand/lpc3180.c:240:45: error: bitwise or with non-zero value always evaluates to true [-Werror,-Wtautological-bitwise-compare]
+  240 |                 target_write_u32(target, 0x20020014, 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                      ~~~~~^~~~~~~~~~~~~~~~~~~
+src/target/breakpoints.c:117:6: error: variable 'n' set but not used [-Werror,-Wunused-but-set-variable]
+  117 |         int n;
+      |             ^
+src/target/breakpoints.c:170:6: error: variable 'n' set but not used [-Werror,-Wunused-but-set-variable]
+  170 |         int n;
+      |             ^
+2 errors generated.
+src/flash/nor/stmsmi.c:165:6: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  165 |         src/flash/nor/dsp5680xx_flash.c:48:11: error: variable 'offset' set but not used [-Werror,-Wunused-but-set-variable]
+   48 |         uint32_t offset = HFM_FLASH_BASE_ADDR;
+      |                  ^
+1 error generated.
+src/target/target.c:2918:14: error: variable length array folded to constant array as an extension [-Werror,-Wgnu-folding-constant]
+ 2918 |         char output[line_bytecnt * 4 + 1];
+      |                     ^~~~~~~~~~~~~~~~~~~~
+if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:165:6: note: '{' token is here
+  165 |         if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:165:6: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  165 |         if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:165:6: note: ')' token is here
+  165 |         if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:171:7: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  171 |                 if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |                     ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:171:7: note: '{' token is here
+  171 |                 if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      | 2 errors generated.
+src/target/arm7_9_common.c:1549:8: error: variable 'num_regs' set but not used [-Werror,-Wunused-but-set-variable]
+ 1549 |                         int num_regs = 0;
+      |                             ^
+                    ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:171:7: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  171 |                 if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |                     ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:171:7: note: ')' token is here
+  171 |                 if (SMI_READ_REG(SMI_SR) & SMI_TFF)
+      |                     ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:200:12: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  200 |         *status = SMI_READ_REG(SMI_SR) & 0x0000ffff;
+      |                   ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:200:12: note: '{' token is here
+  200 |         *status = SMI_READ_REG(SMI_SR) & 0x0000ffff;
+      |                   ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:200:12: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  200 |         *status = SMI_READ_REG(SMI_SR) & 0x0000ffff;
+      |                   ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_S3 errors generated.
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/lpc32xx.lo -MD -MP -MF src/flash/nand/.deps/lpc32xx.Tpo -c src/flash/nand/lpc32xx.c -o src/flash/nand/lpc32xx.o
+MI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:200:12: note: ')' token is here
+  200 |         *status = SMI_READ_REG(SMI_SR) & 0x0000ffff;
+      |                   ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:244:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  244 |         SMI_SET_HW_MODE(); /* AB: is this correct ?*/
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:244:2: note: '{' token is here
+  244 |         SMI_SET_HW_MODE(); /* AB: is this correct ?*/
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:244:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  244 |         SMI_SET_HW_MODE(); /* AB: is this correct ?*/
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:244:2: note: ')' token is here
+  244 |         SMI_SET_HW_MODE(); /* AB: is this correct ?*/
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #src/target/x86_32_common.c:1302:14: error: variable length array folded to constant array as an extension [-Werror,-Wgnu-folding-constant]
+ 1302 |         char output[line_bytecnt * 4 + 1];
+      |                     ^~~~~~~~~~~~~~~~~~~~
+define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:298:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  298 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:298:2: note: '{' token is here
+  298 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:298:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  298 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:298:2: note: ')' token is here
+  298 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:359:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  359 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:359:1 error generated.
+2: note: '{' token is here
+  359 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:359:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  359 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:359:2: note: ')' token is here
+  359 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:389:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  389 |         SMI_SET_HWWB_MODE();
+      |         ^~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:77:3: note: expanded from macro 'SMI_SET_HWWB_MODE'
+   77 |         (SMI_READ_REG(SMI_CR1) | SMI_WB_MODE) & ~SMI_SW_MODE)
+      |          ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:389:2: note: '{' token is here
+  389 |         SMI_SET_HWWB_MODE();
+      |         ^~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:77:3: note: expanded from macro 'SMI_SET_HWWB_MODE'
+   77 |         (Ssrc/target/nds32_cmd.c:824:3: error: 'sprintf' will always overflow; destination buffer has size 11, but format string expands to at least 12 [-Werror,-Wformat-overflow]
+  824 |                 sprintf(data_str, "0x%08" PRIx32 " ", data[i]);
+      |                 ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h:107:27: note: expanded from macro 'sprintf'
+  107 | #define sprintf(str, ...) __sprintf_chk_func (str, 0, __VA_ARGS__)
+      |                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h:87:2: note: expanded from macro '__sprintf_chk_func'
+   87 |         __builtin___sprintf_chk (str, flag, __darwin_obsz(str), __VA_ARGS__)
+      |         ^
+MI_READ_REG(SMI_CR1) | SMI_WB_MODE) & ~SMI_SW_MODE)
+      |          ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:389:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  389 |         SMI_SET_HWWB_MODE();
+      |         ^~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:77:3: note: expanded from macro 'SMI_SET_HWWB_MODE'
+   77 |         (SMI_READ_REG(SMI_CR1) | SMI_WB_MODE) & ~SMI_SW_MODE)
+      |          ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:389:2: note: ')' token is here
+  389 |         SMI_SET_HWWB_MODE();
+      |         ^~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:77:3: note: expanded from macro 'SMI_SET_HWWB_MODE'
+   77 |         (SMI_READ_REG(SMI_CR1) | SMI_WB_MODE) & ~SMI_SW_MODE)
+      |          ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+make[3]: *** [src/jtag/core.lo] Error 1
+make[3]: *** Waiting for unfinished jobs....
+src/flash/nor/stmsmi.c:478:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  478 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:478:2: note: '{' token is here
+  478 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:478:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  478 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2:src/target/dsp563xx.c:1883:14: error: variable length array folded to constant array as an extension [-Werror,-Wgnu-folding-constant]
+ 1883 |         char output[line_bytecnt * 4 + 1];
+      |                     ^~~~~~~~~~~~~~~~~~~~
+ note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      |                                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:478:2: note: ')' token is here
+  478 |         SMI_SET_HW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:79:2: note: expanded from macro 'SMI_SET_HW_MODE'
+   79 |         SMI_READ_REG(SMI_CR1) & ~(SMI_SW_MODE | SMI_WB_MODE))
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:502:2: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  502 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:502:2: note: '{' token is here
+  502 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:502:2: error: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  502 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:53:13: note: expanded from macro '_SMI_READ_REG'
+   53 |         __v;                                                    \
+      | 1 error generated.
+make[3]: *** [src/flash/nand/lpc3180.lo] Error 1
+make[3]: *** [src/flash/nor/dsp5680xx_flash.lo] Error 1
+                                                                ^
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:502:2: note: ')' token is here
+  502 |         SMI_SET_SW_MODE();
+      |         ^~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:75:2: note: expanded from macro 'SMI_SET_SW_MODE'
+   75 |         SMI_READ_REG(SMI_CR1) | SMI_SW_MODE)
+      |         ^~~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:42: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                                          ^
+make[3]: *** [src/jtag/interface.lo] Error 1
+src/flash/nor/stmsmi.c:60:49: note: expanded from macro 'SMI_WRITE_REG'
+   60 |         __r = target_write_u32(target, io_base + (a), (v)); \
+      |                                                        ^
+src/flash/nor/stmsmi.c:519:8: error: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Werror,-Wcompound-token-split-by-macro]
+  519 |         *id = SMI_READ_REG(SMI_RR) & 0x00ffffff;
+      |               ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:25: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                         ^
+src/flash/nor/stmsmi.c:519:8: note: '{' token is here
+  519 |         *id = SMI_READ_REG(SMI_RR) & 0x00ffffff;
+      |               ^~~~~~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:44:26: note: expanded from macro 'SMI_READ_REG'
+   44 | #define SMI_READ_REG(a) (_SMI_READ_REG(a))
+      |                          ^~~~~~~~~~~~~~~~
+src/flash/nor/stmsmi.c:45:28: note: expanded from macro '_SMI_READ_REG'
+   45 | #define _SMI_READ_REG(a)                        \
+      |                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+1 error generated.
+make[3]: *** [src/target/breakpoints.lo] Error 1
+1 error generated.
+make[3]: *** [src/target/x86_32_common.lo] Error 1
+make[3]: *** [src/target/nds32_cmd.lo] Error 1
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/flash/nand/davinci.lo -MD -MP -MF src/flash/nand/.deps/davinci.Tpo -c src/flash/nand/davinci.c -o src/flash/nand/davinci.o
+make[3]: *** [src/flash/nor/stmsmi.lo] Error 1
+make[3]: *** [src/target/arm7_9_common.lo] Error 1
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/target/smp.lo -MD -MP -MF src/target/.deps/smp.Tpo -c src/target/smp.c -o src/target/smp.o
+make[3]: *** [src/target/dsp563xx.lo] Error 1
+src/helper/log.c:415:16: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+  415 | void keep_alive()
+      |                ^
+      |                 void
+src/helper/log.c:450:16: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+  450 | void kept_alive()
+      |                ^
+      |                 void
+2 errors generated.
+src/svf/svf.c:1314:26: error: overlapping comparisons always evaluate to false [-Werror,-Wtautological-overlap-compare]
+ 1314 |                         if ((num_of_argu < 3) && (num_of_argu > 11)) {
+      |                             ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+make[3]: *** [src/helper/src_helper_libhelper_la-log.lo] Error 1
+src/flash/nand/lpc32xx.c:335:30: error: operator '?:' has lower precedence than '|'; '|' will be evaluated first [-Werror,-Wbitwise-conditional-parentheses]
+  335 |                                 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                 ~~~~~~~~~~~~~~~~~~~~~~~~ ^
+src/flash/nand/lpc32xx.c:335:30: note: place parentheses around the '|' expression to silence this warning
+  335 |                                 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                          ^
+      |                                 (                       )
+src/flash/nand/lpc32xx.c:335:30: note: place parentheses around the '?:' expression to evaluate it first
+  335 |                                 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                                          ^      
+      |                                        (                        )
+src/flash/nand/lpc32xx.c:335:10: error: bitwise or with non-zero value always evaluates to true [-Werror,-Wtautological-bitwise-compare]
+  335 |                                 0x3e | (bus_width == 16) ? 1 : 0);
+      |                                 ~~~~~^~~~~~~~~~~~~~~~~~~
+libtool: link: ar cru src/pld/.libs/libpld.a  src/pld/pld.o src/pld/xilinx_bit.o src/pld/virtex2.o
+make[3]: *** [src/target/target.lo] Error 1
+libtool: link: ar cru src/jtag/hla/.libs/libocdhla.a  src/jtag/hla/hla_transport.o src/jtag/hla/hla_tcl.o src/jtag/hla/hla_interface.o src/jtag/hla/hla_layout.o
+make[3]: *** [src/svf/svf.lo] Error 1
+libtool: link: ar cru src/transport/.libs/libtransport.a  src/transport/transport.o
+2 errors generated.
+src/jtag/aice/aice_usb.c:2810:17: error: bitwise or with non-zero value always evaluates to true [-Werror,-Wtautological-bitwise-compare]
+ 2810 |         if (pin_status | 0x4)
+      |             ~~~~~~~~~~~^~~~~
+libtool: link: ar cru src/jtag/drivers/usb_blaster/.libs/libocdusbblaster.a  src/jtag/drivers/usb_blaster/src_jtag_drivers_usb_blaster_libocdusbblaster_la-usb_blaster.o src/jtag/drivers/usb_blaster/src_jtag_drivers_usb_blaster_libocdusbblaster_la-ublast2_access_libusb.o
+make[3]: *** [src/flash/nand/lpc32xx.lo] Error 1
+libtool: link: ranlib src/pld/.libs/libpld.a
+1 error generated.
+libtool: link: ranlib src/jtag/hla/.libs/libocdhla.a
+libtool: link: ranlib src/transport/.libs/libtransport.a
+src/flash/nand/davinci.c:560:60: error: parameter 'oob_size' set but not used [-Werror,-Wunused-but-set-parameter]
+  560 |         uint8_t *data, uint32_t data_size, uint8_t *oomake[3]: *** [src/jtag/aice/src_jtag_aice_libocdaice_la-aice_usb.lo] Error 1b, uint
+32_t oob_size)
+      |                                                                   ^
+src/target/smp.c:64:20: error: variable length array folded to constant array as an extension [-Werror,-Wgnu-folding-constant]
+   64 |                         char hex_buffer[len * 2 + 1];
+      |                                         ^~~~~~~~~~~
+src/target/smp.c:65:19: error: variable length array folded to constant array as an extension [-Werror,-Wgnu-folding-constant]
+   65 |                         uint8_t buffer[len];
+      |                                        ^~~
+libtool: link: ranlib src/jtag/drivers/usb_blaster/.libs/libocdusbblaster.a
+2 errors generated.
+1 error generated.
+make[3]: *** [src/target/smp.lo] Error 1
+make[3]: *** [src/flash/nand/davinci.lo] Error 1
+libtool: link: ( cd "src/pld/.libs" && rm -f "libpld.la" && ln -s "../libpld.la" "libpld.la" )
+libtool: link: ( cd "src/transport/.libs" && rm -f "libtransport.la" && ln -s "../libtransport.la" "libtransport.la" )
+libtool: link: ( cd "src/jtag/hla/.libs" && rm -f "libocdhla.la" && ln -s "../libocdhla.la" "libocdhla.la" )
+libtool: link: ( cd "src/jtag/drivers/usb_blaster/.libs" && rm -f "libocdusbblaster.la" && ln -s "../libocdusbblaster.la" "libocdusbblaster.la" )
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -isystem /opt/homebrew/Cellar/libusb/1.0.29/include/libusb-1.0 -I./src/jtag/drivers/libjaylink/libjaylink -I./src/jtag/drivers/libjaylink -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/jtag/drivers/src_jtag_drivers_libocdjtagdrivers_la-jlink.lo -MD -MP -MF src/jtag/drivers/.deps/src_jtag_drivers_libocdjtagdrivers_la-jlink.Tpo -c src/jtag/drivers/jlink.c -o src/jtag/drivers/src_jtag_drivers_libocdjtagdrivers_la-jlink.o
+mv -f src/jtag/drivers/.deps/src_jtag_drivers_libocdjtagdrivers_la-jlink.Tpo src/jtag/drivers/.deps/src_jtag_drivers_libocdjtagdrivers_la-jlink.Plo
+make[2]: *** [all-recursive] Error 1
+make[1]: *** [all] Error 2
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make  install-recursive
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+Making install in jimtcl
+make[3]: Nothing to be done for `install'.
+Making install in src/jtag/drivers/libjaylink
+Making install in libjaylink
+make[5]: Nothing to be done for `install-exec-am'.
+Makefile:4252: warning: overriding commands for target `check-recursive'
+Makefile:3665: warning: ignoring old commands for target `check-recursive'
+depbase=`echo src/svf/svf.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+	/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.   -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl  -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/svf/svf.lo -MD -MP -MF $depbase.Tpo -c -o src/svf/svf.lo src/svf/svf.c &&\
+	mv -f $depbase.Tpo $depbase.Plo
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./src -I./src -I./src/helper -DPKGDATADIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/share/openocd\" -DBINDIR=\"/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin\" -I./jimtcl -I./jimtcl -Wall -Wstrict-prototypes -Wformat-security -Wshadow -Wextra -Wno-unused-parameter -Wbad-function-cast -Wcast-align -Wredundant-decls -Werror -g -O2 -MT src/svf/svf.lo -MD -MP -MF src/svf/.deps/svf.Tpo -c src/svf/svf.c -o src/svf/svf.o
+src/svf/svf.c:1314:26: error: overlapping comparisons always evaluate to false [-Werror,-Wtautological-overlap-compare]
+ 1314 |                         if ((num_of_argu < 3) && (num_of_argu > 11)) {
+      |                             ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+make[3]: *** [src/svf/svf.lo] Error 1
+make[2]: *** [install-recursive] Error 1
+make[1]: *** [install] Error 2
+make: *** [/Users/foronoma/Work/Code/Eurorack/performer-ph/./tools/openocd/bin/openocd] Error 2
