@@ -71,6 +71,8 @@ private:
         RetriggerProbabilityBias,
         LengthBias,
         NoteProbabilityBias,
+        AccumDir,
+        AccumValue,
         Last
     };
 
@@ -88,6 +90,8 @@ private:
         case RetriggerProbabilityBias: return "Retrig P. Bias";
         case LengthBias: return "Length Bias";
         case NoteProbabilityBias: return "Note P. Bias";
+        case AccumDir:  return "Accum Dir";
+        case AccumValue: return "Accum Value";
         case Last:      break;
         }
         return nullptr;
@@ -135,6 +139,12 @@ private:
         case NoteProbabilityBias:
             _track->printNoteProbabilityBias(str);
             break;
+        case AccumDir:
+            _track->printAccumDir(str);
+            break;
+        case AccumValue:
+            _track->printAccumValue(str);
+            break;
         case Last:
             break;
         }
@@ -177,6 +187,12 @@ private:
             break;
         case NoteProbabilityBias:
             _track->editNoteProbabilityBias(value, shift);
+            break;
+        case AccumDir:
+            _track->editAccumDir(value, shift);
+            break;
+        case AccumValue:
+            _track->editAccumValue(value, shift);
             break;
         case Last:
             break;

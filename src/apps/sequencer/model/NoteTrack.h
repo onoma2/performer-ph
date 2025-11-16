@@ -52,6 +52,25 @@ public:
         return nullptr;
     }
 
+    // Accumulator Direction
+
+    enum class AccumDir : uint8_t {
+        Up,
+        Down,
+        Freeze,
+        Last
+    };
+
+    static const char *accumDirName(AccumDir dir) {
+        switch (dir) {
+        case AccumDir::Up:      return "Up";
+        case AccumDir::Down:    return "Down";
+        case AccumDir::Freeze:  return "Freeze";
+        case AccumDir::Last:    break;
+        }
+        return nullptr;
+    }
+
     //----------------------------------------
     // Properties
     //----------------------------------------
@@ -260,6 +279,36 @@ public:
         str("%+.1f%%", noteProbabilityBias() * 12.5f);
     }
 
+    // accumDir
+
+    AccumDir accumDir() const { return _accumDir; }
+    void setAccumDir(AccumDir accumDir) {
+        _accumDir = ModelUtils::clampedEnum(accumDir);
+    }
+
+    void editAccumDir(int value, bool shift) {
+        setAccumDir(ModelUtils::adjustedEnum(accumDir(), value));
+    }
+
+    void printAccumDir(StringBuilder &str) const {
+        str(accumDirName(accumDir()));
+    }
+
+    // accumValue
+
+    int accumValue() const { return _accumValue; }
+    void setAccumValue(int accumValue) {
+        _accumValue = clamp(accumValue, 0, 7);
+    }
+
+    void editAccumValue(int value, bool shift) {
+        setAccumValue(accumValue() + value);
+    }
+
+    void printAccumValue(StringBuilder &str) const {
+        str("%+d", accumValue());
+    }
+
     // sequences
 
     const NoteSequenceArray &sequences() const { return _sequences; }
@@ -308,6 +357,8 @@ private:
     Routable<int8_t> _retriggerProbabilityBias;
     Routable<int8_t> _lengthBias;
     Routable<int8_t> _noteProbabilityBias;
+    AccumDir _accumDir;
+    int8_t _accumValue;
 
     NoteSequenceArray _sequences;
 

@@ -8,6 +8,14 @@ I'm working to bring this firmware up-to-date, and make myself at home with the 
 
 After encountering instability on the mebitek fork, I've decided to start from the known-good master branch of the original firmware, and carefully work in some of the new features from other forks.
 
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [CLAUDE.md](./CLAUDE.md) | AI assistant guide - comprehensive codebase documentation for AI assistants and developers |
+| [VS_MEBITEK.md](./VS_MEBITEK.md) | Feature comparison with mebitek fork - helps choose the right firmware |
+| [mebitek_snippets/](./mebitek_snippets/) | Annotated code examples from mebitek fork for reference and learning |
+
 ## jackpf Improvements
 
 | Change             	| Documentation                                    	|

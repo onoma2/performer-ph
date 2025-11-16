@@ -45,6 +45,8 @@ void NoteTrack::clear() {
     setRetriggerProbabilityBias(0);
     setLengthBias(0);
     setNoteProbabilityBias(0);
+    setAccumDir(AccumDir::Up);
+    setAccumValue(1);
 
     for (auto &sequence : _sequences) {
         sequence.clear();
@@ -64,6 +66,8 @@ void NoteTrack::write(VersionedSerializedWriter &writer) const {
     writer.write(_retriggerProbabilityBias.base);
     writer.write(_lengthBias.base);
     writer.write(_noteProbabilityBias.base);
+    writer.write(_accumDir);
+    writer.write(_accumValue);
     writeArray(writer, _sequences);
 }
 
@@ -82,6 +86,8 @@ void NoteTrack::read(VersionedSerializedReader &reader) {
     reader.read(_retriggerProbabilityBias.base);
     reader.read(_lengthBias.base);
     reader.read(_noteProbabilityBias.base);
+    reader.read(_accumDir, ProjectVersion::Version33);
+    reader.read(_accumValue, ProjectVersion::Version33);
 
     // There is a bug in previous firmware versions where writing the properties
     // of a note track did not update the hash value.
